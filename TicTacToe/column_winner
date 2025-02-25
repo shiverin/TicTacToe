@@ -1,0 +1,16 @@
+def column_winner(board):
+    c=board
+    length=len(board)
+    y=False
+    for num in range(length):
+        col=num
+        print(col)
+        for i in range(length-1):
+            row=i
+            y=(c[row][col]==c[row+1][col]) and (c[0][col]!=' ')
+            print(y)
+            if y==False:
+                break
+        if y==True:
+            return y
+    return y
