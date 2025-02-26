@@ -1,0 +1,92 @@
+def winning_line(strings):
+    strings = set(strings)
+    return len(strings) == 1 and ' ' not in strings
+
+def row_winner(board):
+    return any(winning_line(row) for row in board)
+
+def column_winner(board):
+    return row_winner(zip(*board))
+
+def main_diagonal_winner(board):
+    return winning_line(row[i] for i, row in enumerate(board))
+
+def diagonal_winner(board):
+    return main_diagonal_winner(board) or main_diagonal_winner(reversed(board))
+
+def winner(board):
+    return row_winner(board) or column_winner(board) or diagonal_winner(board)
+
+def format_board(board):
+    size = len(board)
+    line = f'\n  {"+".join("-" * size)}\n'
+    rows = [f'{i + 1} {"|".join(row)}' for i, row in enumerate(board)]
+    return f'  {" ".join(str(i + 1) for i in range(size))}\n{line.join(rows)}'
+
+def play_move(board, player, poop):
+    print(f'{poop} to play:')
+    row = int(input()) - 1
+    col = int(input()) - 1
+    board[row][col] = player
+    print(format_board(board))
+
+def make_board(size):
+    return [[' '] * size for _ in range(size)]
+
+def print_winner(player):
+    print(f'{player} wins!')
+
+def print_draw():
+    print("It's a draw!")
+
+def draw(board):
+    word=' '
+    happy=False
+    for string in board:
+        for string in string:
+            if word in string:
+                happy=True
+            #if happy:
+                #print("yessir")
+                
+    #print(board)
+    return(not happy)
+    
+def play_game(board_size, player1, player2):
+    board = make_board(board_size)
+    print(format_board(board))
+    
+    while winner(board)==False:
+        if draw(board)==True:
+            print_draw()
+            break
+        #print(draw(board))
+
+        player=player1
+        poop=name1
+        play_move(board, player1, poop)
+        if winner(board)==True:
+            break
+        if draw(board)==True:
+            print_draw()
+            break
+        #print(draw(board))
+        player=player2
+        poop=name2
+        play_move(board, player2, poop)
+        if winner(board)==True:
+            break
+    
+    if winner(board)==True:
+        print_winner(poop)
+
+
+print("Enter your name bruh!")
+name1=(input())
+print("Enter your tictactoe")
+alpha=input()
+print("Enter your name LOL!")
+name2=(input())
+print("Enter your tictactoe")
+beta=(input())
+play_game(2, alpha, beta)
