@@ -1,0 +1,16 @@
+def format_board(board):
+    length=len(board)
+    z=length
+    y=(" ")
+    x=[]
+    n=0
+    for row in board:
+        row.insert(0,str(n+1))
+        n+=1
+    for row in board:
+        x.append("".join(row))
+    for i in range(length):
+        y+=(str(i+1))
+    x.insert(0,y)
+    x=("\n".join(x))
+    return(x)
