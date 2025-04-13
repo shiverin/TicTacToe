@@ -17,6 +17,7 @@ def diagonal_winner(board):
 def winner(board):
     return row_winner(board) or column_winner(board) or diagonal_winner(board)
 
+
 def format_board(board):
     size = len(board)
     line = f'\n  {"+".join("-" * size)}\n'
@@ -81,12 +82,17 @@ def play_game(board_size, player1, player2):
         print_winner(poop)
 
 
-print("Enter your name bruh!")
+print("Player 1 name:")
 name1=(input())
-print("Enter your tictactoe")
+print("Symbol 1:")
 alpha=input()
-print("Enter your name LOL!")
+print("PLayer 2 name:")
 name2=(input())
-print("Enter your tictactoe")
+print("Symbol 2:")
 beta=(input())
-play_game(2, alpha, beta)
+while beta==alpha:
+    print("duplicate symbol")
+    beta=(input())
+
+SIZE=3
+play_game(SIZE, alpha, beta)
